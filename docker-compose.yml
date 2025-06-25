@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  n8n:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: n8n-gpu
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=false
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - TZ=Europe/Moscow
+    volumes:
+      - F:/n8n-docker/data:/data
+      - F:/n8n-docker/videos/clips:/videos/clips
+      - F:/n8n-docker/videos/in:/videos/in
+      - F:/n8n-docker/videos/transcripts:/videos/transcripts
+      - F:/n8n-docker/videos/video_d:/videos/video_d
+    restart: unless-stopped
+    deploy:
+      resources:
+       reservations:
+        devices:
+        - driver: nvidia
+          device_ids: ["GPU-8d58d68b-bf63-7455-2448-f952ace6237b"]
+          capabilities: [gpu]

@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  ffmpeg-api:
+    build:
+      context: ./ffmpeg-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./videos:/videos
+    gpus: all
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
