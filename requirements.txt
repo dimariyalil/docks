@@ -1,5 +1,4 @@
-flask
-opencv-python
-mediapipe
-openai
-yt-dlp
+torch==2.2.2
+torchtext==0.17.2
+fastapi==0.110.2
+uvicorn[standard]==0.29.0

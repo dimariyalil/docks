@@ -1,0 +1,14 @@
+services:
+  lighthouse-api:
+    build:
+      context: .                     # корень n8n-docker
+      dockerfile: lighthouse-api/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./videos:/videos
+    gpus: all
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+      - NVIDIA_REQUIRE_CUDA=cuda>=12.9
